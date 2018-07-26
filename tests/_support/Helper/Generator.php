@@ -32,7 +32,7 @@ class Generator
 
         /** @var User $user */
         try {
-            return $this->make('App\User', array_merge($randomizedFields, $fields));
+            return $this->make('App\Models\User', array_merge($randomizedFields, $fields));
         } catch (\Exception $e) {
             return null;
         }

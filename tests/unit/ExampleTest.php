@@ -9,11 +9,11 @@ class ExampleTest extends \Codeception\Test\Unit
      */
     protected $tester;
 
-    protected function _before()
+    protected function before()
     {
     }
 
-    protected function _after()
+    protected function after()
     {
     }
 
@@ -22,8 +22,8 @@ class ExampleTest extends \Codeception\Test\Unit
     {
         /** @var \App\User $user */
         $user = (new Generator)->getRandomUser(['name' => 'User']);
-        $ts = new \App\Http\Services\TestService($user);
-        $this->tester->assertEquals(strtoupper($user->name), $ts->getUserNameUpper());
-        $this->tester->assertNotEquals($user->name, $ts->getUserNameUpper());
+//        $ts = new \App\Http\Services\TestService($user);
+//        $this->tester->assertEquals(strtoupper($user->name), $ts->getUserNameUpper());
+//        $this->tester->assertNotEquals($user->name, $ts->getUserNameUpper());
     }
 }
