@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("test", function () {
+    return response()->json(['result' => true], \Illuminate\Http\Response::HTTP_ACCEPTED);
+});
