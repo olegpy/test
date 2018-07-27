@@ -3,15 +3,13 @@ language: php
 php:
   - '7.2'
 
-before_script:
+install:
   - cp .env.travis .env
   - mysql -e 'create database homestead_test;'
   - composer self-update
   - composer install --no-interaction
+before_script:
   - php artisan serve
-
-
 
 script:
-  - php artisan serve
   - php vendor/bin/codecept run
