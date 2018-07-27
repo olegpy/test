@@ -10,5 +10,8 @@ before_script:
   - composer install --no-interaction
   - php artisan serve
 
+
+
 script:
+  - php artisan serve
   - php vendor/bin/codecept run
