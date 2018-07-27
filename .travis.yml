@@ -1,28 +1,13 @@
-#is required to use docker service in travis
-sudo: true
-#can be any language, just php for example
 language: php
 
 php:
   - '7.2'
 
-services:
-  - docker
+before_script:
+  - cp .env.travis .env
+  - mysql -e 'create database homestead_test;'
+  - composer self-update
+  - composer install --no-interaction
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t test-php:latest . && docker-compose up
-      - docker exec -it  test-php bash
-      - php artisan migrate && php artisan passport:install
-      - php artisan db:seed && exit
-
-    - stage: test
-      script:
-      - docker exec -it  test-php bash
-      - php vendor/bin/codecept run
-    - script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
-
-
+script:
+  - php vendor/bin/codecept run unit
