@@ -10,19 +10,19 @@ services:
       - "3306:3306"
     volumes:
       - "./docker/volumes/mysql:/var/lib/mysql"
-  #php:
-  #  image: test-php:latest
-  #  container_name: test-php
-  #  depends_on:
-  #    - db
-  #if you wish tp develop without image reload uncomment below php and comment upper
   php:
-    image: webdevops/php:7.2
+    image: test-php:latest
     container_name: test-php
-    volumes:
-      - "./:/app"
-      - "~/.composer:/root/.composer"
-    working_dir: '/app'
+    depends_on:
+      - db
+  #if you wish tp develop without image reload uncomment below php and comment upper
+#  php:
+#    image: webdevops/php:7.2
+#    container_name: test-php
+#    volumes:
+#      - "./:/app"
+#      - "~/.composer:/root/.composer"
+#    working_dir: '/app'
   nginx:
     depends_on:
       - php

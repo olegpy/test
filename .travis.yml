@@ -7,6 +7,7 @@ services:
   - docker
 
 before_script:
+  - docker build -t test-php:latest . && docker-compose up
   - docker ps
   - docker exec -it  test-php bash
   - php artisan migrate && php artisan passport:install
