@@ -8,8 +8,10 @@ install:
   - mysql -e 'create database homestead_test;'
   - composer self-update
   - composer install --no-interaction
+  - php artisan key:generate
+
 before_script:
-  - php artisan serve
+  - php artisan serve &
 
 script:
   - php vendor/bin/codecept run
