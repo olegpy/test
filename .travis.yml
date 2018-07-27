@@ -11,6 +11,7 @@ install:
   - php artisan key:generate
 
 before_script:
+  - netstat -plan | grep http
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8001 &
   - php artisan serve --port=8001 &
 
