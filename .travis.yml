@@ -11,8 +11,8 @@ install:
   - php artisan key:generate
 
 before_script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - php artisan serve --port 8080 &
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://127.0.0.1 &
+  - php artisan serve --port &
 
 script:
   - php vendor/bin/codecept run
